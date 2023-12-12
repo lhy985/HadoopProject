@@ -1,11 +1,15 @@
 package cn.lhy.mr.nb;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.StringTokenizer;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -19,18 +23,15 @@ public class CalculateMapper extends Mapper<Object, Text, Text, Text> {
 	protected void setup(Context context) throws IOException, InterruptedException {
 		super.setup(context);
 		try {
-//			FileSystem fs = FileSystem.get(URI.create("hdfs://192.168.210.132:9000"), new Configuration());
-//			Path ModelPath = new Path("/user/hadoop/output01/part-r-00000");
-			String filePathString = "C:\\Users\\31840\\Desktop\\MapReduce Lab\\data\\training\\Output\\part-r-00000";
-			File fs = new File(filePathString);
-			if (!fs.exists())
+			FileSystem fs = FileSystem.get(URI.create("hdfs://192.168.121.134:9000"), new Configuration());
+			Path ModelPath = new Path("/NaiveBayes/data/training/Output/part-r-00000");
+			if (!fs.exists(ModelPath))
 				throw new IOException("Input file not found");
-			if (!fs.isFile())
+			if (!fs.isFile(ModelPath))
 				throw new IOException("Input should be a file");
-//		//	FSDataInputStream in = fs.open(filePathString);
+			FSDataInputStream in = fs.open(ModelPath);
 			// 打开模型文件并创建BufferedReader对象进行读取
-			BufferedReader bufread = new BufferedReader(new FileReader(fs));
-//			BufferedReader bufread = new BufferedReader(new InputStreamReader(in));
+			BufferedReader bufread = new BufferedReader(new InputStreamReader(in));
 			String lineStr, keyStr = "", valueStr = "";
 			while ((lineStr = bufread.readLine()) != null) {
 				StringTokenizer tokenizer = new StringTokenizer(lineStr);
@@ -41,7 +42,7 @@ public class CalculateMapper extends Mapper<Object, Text, Text, Text> {
 				context.write(new Text(keyStr), new Text(valueStr));
 			}
 			context.write(new Text("z_endofkey"), new Text(""));
-			bufread.close();
+			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

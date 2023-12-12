@@ -110,12 +110,12 @@ public class CalculateReducer extends Reducer<Text, Text, Text, Text> {
 				}
 			}
 		} // end if("z_endofkey")
+			// 在输出文件末尾，写入它判断每个类别的文件数目
 		Set<String> classSet = classCoutPair.keySet();
 		for (Iterator<String> iterclass = classSet.iterator(); iterclass.hasNext();) {
 			String classfication = (String) iterclass.next();
 			int num = classCoutPair.get(classfication);
 			context.write(new Text(classfication), new Text(String.valueOf(num)));
-
 		}
 	}
 }
