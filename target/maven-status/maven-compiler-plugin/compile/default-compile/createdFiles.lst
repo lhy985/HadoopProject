@@ -1,0 +1,5 @@
+cn\lhy\mr\nb\NavieBayes.class
+cn\lhy\mr\nb\SetupMapper.class
+cn\lhy\mr\nb\CalculateMapper.class
+cn\lhy\mr\nb\CalculateReducer.class
+cn\lhy\mr\nb\SetupReducer.class

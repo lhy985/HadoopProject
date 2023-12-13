@@ -1,8 +1,5 @@
-D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\wordcount\WCReducer.java
 D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\nb\NavieBayes.java
-D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\wordcount\WCDriver.java
 D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\nb\SetupMapper.java
 D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\nb\CalculateMapper.java
 D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\nb\CalculateReducer.java
-D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\wordcount\WCMapper.java
 D:\code\eclipseCode\HadoopDemo\src\main\java\cn\lhy\mr\nb\SetupReducer.java
